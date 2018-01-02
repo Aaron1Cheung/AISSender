@@ -26,7 +26,7 @@ public class SocketThread extends Thread {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		BufferedOutputStream bo = new BufferedOutputStream(os);
+		//BufferedOutputStream bo = new BufferedOutputStream(os);
 	 	Set<String> keys = new TreeSet<String>(data.keySet());
 	 	while(true) {
 	 		for(String i:keys) {
@@ -39,10 +39,9 @@ public class SocketThread extends Thread {
 			}
 	 		String info = "";
 	 		for(String ii:s) {
-	 			info += ii+"\n";
-	 		}
-	 		try {
-				bo.write(info.getBytes());
+	 			info = ii+"\n";
+	 			try {
+				os.write(info.getBytes());
 			} catch (IOException e) {
 				try {
 					csocket.close();
@@ -54,6 +53,8 @@ public class SocketThread extends Thread {
 				}
 				return;
 			}
+	 		}
+	 		
 	 		}
 	 	}
 	 	
